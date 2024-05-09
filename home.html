@@ -1,4 +1,4 @@
-<!doctype html>
+{% comment %} <!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -13,176 +13,168 @@
   /* Write styles here */
 
   :root {
-    --primary-color: #668b6f;
-    --secondry-color: rgb(119, 119, 119);
-    font-family: "Allerta", "Abel", sans-serif;
-    font-weight: 400;
-  }
+  --primary-color: #668b6f;
+  --secondary-color: rgb(119, 119, 119);
+  font-family: "Allerta", "Abel", sans-serif;
+  font-weight: 400;
+}
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    outline: 0;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: 0;
+}
 
-  body {
-    height: 100vh;
-    width: 100vw;
-    position: relative;
-    overflow: hidden;
-  }
+body {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+}
 
-  #navbarMonstera {
-    display: flex;
-    padding: 40px 50px;
-    flex: 5;
-  }
+/* Navbar */
+#navbarMonstera {
+  display: flex;
+  padding: 40px 50px;
+  flex: 5;
+}
 
-  /* Logo */
-  #navFirst {
-    flex: 1;
-  }
+/* Logo */
+#navFirst {
+  flex: 1;
+}
 
-  #navFirst img {
-    height: 130px;
-    display: block;
-    cursor: pointer;
-    overflow: hidden;
-  }
+#navFirst img {
+  height: 130px;
+  display: block;
+  cursor: pointer;
+  overflow: hidden;
+}
 
-  /* Navbar */
-  #navMid {
-    display: flex;
-    flex: 3;
-    align-items: center;
-    justify-content: space-around;
-    font-family: "Allerta";
-    font-size: 16px;
-    font-weight: 100;
-    cursor: pointer;
+/* Navbar Links */
+#navMid {
+  display: flex;
+  flex: 3;
+  align-items: center;
+  justify-content: space-around;
+  font-family: "Allerta";
+  font-size: 16px;
+  font-weight: 100;
+}
 
-    /* border: 2px solid red; */
+#navMid div h4 {
+  font-weight: 300;
+  line-height: 25px;
+  transition: 0.1s linear;
+}
 
-  }
+#navMid div h4:hover {
+  font-weight: 400;
+  border-bottom: 3px solid #111111;
+  border-radius: 3px;
+}
 
-  #navMid div h4 {
-    font-weight: 300;
-    line-height: 25px;
-  }
+/* Navbar End Section */
+#navEnd {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: 60px;
+}
 
-  h4:hover {
-    display: block;
-    font-weight: 400;
-    border-bottom: 3px solid #111111;
-    border-radius: 3px;
-    transition: 0.1s linear
-  }
+#navEnd > div {
+  margin-left: 30px;
+}
 
-  #navEnd {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: flex-end;
-    margin-left: 60px;
-  }
+/* Hero Section */
+#midWhole {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  height: 87vh;
+}
 
-  #navEnd>div {
-    margin-left: 30px;
-  }
+#imgMain {
+  position: absolute;
+  height: 600px;
+  right: 0;
+  bottom: 1;
+}
 
-  /* Hero session */
-  #midWhole {
-    position: relative;
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    height: 87vh;
-  }
+#midWholePart11 {
+  margin-top: 60px;
+  margin-left: 80px;
+  width: 700px;
+}
 
-  #imgMain {
-    position: absolute;
-    height: 600px;
-    right: 0;
-    bottom: 1;
+#midWholePart11 div ul li:nth-child(2),
+#midWholePart11 div ul li:nth-child(3),
+#midWholePart11 div ul li:nth-child(4) {
+  font-size: 1.1rem;
+  width: 700px;
+}
 
-  }
+li::marker {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  align-items: center;
+}
 
-  #midWholePart11 {
-    /* background-color: green; */
-    margin-top: 60px;
-    margin-left: 80px;
-    width: 700px;
-  }
+#monstera {
+  font-size: 5rem;
+}
 
-  #midWholePart11 div ul li:nth-child(2),
-  #midWholePart11 div ul li:nth-child(3),
-  #midWholePart11 div ul li:nth-child(4) {
-    font-size: 1.1rem;
-    width: 700px;
+#midWholePart12 {
+  margin-top: 80px;
+  margin-left: 70px;
+  font-size: 1.3rem;
+  color: #ffffff;
+  width: 300px;
+  border-radius: 40px;
+  background-color: var(--primary-color);
+}
 
-  }
+#midWholePart121 {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 15px;
+}
 
-  li::marker {
-    font-size: 1.5rem;
-    font-weight: bolder;
-    align-items: center;
-  }
+#midWholePart122 img {
+  height: 20px;
+}
 
-  #monstera {
-    font-size: 5rem;
-  }
+#midWholePart13 {
+  margin-top: 60px;
+  display: flex;
+  width: 800px;
+  margin-left: 70px;
+  margin-right: auto;
+}
 
-  #midWholePart12 {
-    margin-top: 80px;
-    margin-left: 70px;
-    font-size: 1.3rem;
-    color: #ffffff;
-    width: 300px;
-    border-radius: 40px;
-    background-color: var(--primary-color);
+.midWholePart13Parts {
+  display: flex;
+  padding: 10px 0px;
+}
 
-  }
+.midWholePart13Parts div:nth-child(2) {
+  margin-left: 10px;
+  padding: 5px;
+}
 
-  #midWholePart121 {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 10px 15px;
+h4 {
+  font-weight: 300;
+  line-height: 25px;
+}
 
-  }
+.text {
+  font-size: 0.8rem;
+  color: var(--secondary-color);
+}
 
-  #midWholePart122 img {
-    height: 20px;
-  }
-
-  #midWholePart13 {
-    margin-top: 60px;
-    display: flex;
-    width: 800px;
-    margin-left: 70px;
-    margin-right: auto;
-
-  }
-
-  .midWholePart13Parts {
-    display: flex;
-    padding: 10px 0px;
-  }
-
-  .midWholePart13Parts div:nth-child(2) {
-    margin-left: 10px;
-    padding: 5px;
-  }
-
-  h4 {
-    font-weight: 300;
-    line-height: 25px;
-  }
-
-  .text {
-    font-size: 0.8rem;
-    color: var(--secondry-color);
-  }
 </style>
 
 </head>
@@ -204,7 +196,7 @@
       <h4><a href="shop.html">Shop</a></h4>
     </div>
     <div>
-          <h4><a href="#about">ABOUT US</a></h4>
+          <h4><a href="about.html">ABOUT US</a></h4>
     </div>
     <div>
       <h4> <a href="login.html">LOGIN</a></h4>
@@ -303,4 +295,55 @@ function myFunction() {
 </script> {% endcomment %}
 </body>
 </head>
+</html> 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <button class="cta">Sign Up</button>
+        </nav>
+    </header>
+    <section class="hero">
+        <h1>Welcome to our website!</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, magna a ullamcorper laoreet, lectus eros porttitor nunc, et aliquam nunc nibh et nisl. Sed auctor, magna a ullamcorper laoreet, lectus eros porttitor nunc, et aliquam nunc nibh et nisl.</p>
+        <button class="cta">Learn More</button>
+    </section>
+    <section class="services">
+        <h2>Our Services</h2>
+        <div class="service">
+            <img src="service1.png" alt="Service 1">
+            <h3>Service 1</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, magna a ullamcorper laoreet, lectus eros porttitor nunc, et aliquam nunc nibh et nisl.</p>
+        </div>
+        <div class="service">
+            <img src="service2.png" alt="Service 2">
+            <h3>Service 2</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, magna a ullamcorper laoreet, lectus eros porttitor nunc, et aliquam nunc nibh et nisl.</p>
+        </div>
+        <div class="service">
+            <img src="service3.png" alt="Service 3">
+            <h3>Service 3</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, magna a ullamcorper laoreet, lectus eros porttitor nunc, et aliquam nunc nibh et nisl.</p>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2023 Company Name. All rights reserved.</p>
+    </footer>
+</body>
 </html>

@@ -32,7 +32,7 @@
 			this.currency = "&#x20b9;"; // HTML entity of the currency to be displayed in the layout
 			this.currencyString = "₹"; // Currency symbol as textual string
 			this.paypalCurrency = "INR"; // PayPal's currency code
-			this.paypalBusinessEmail = "yourbusiness@email.com"; // Your Business PayPal's account email address
+			this.paypalBusinessEmail = "sb-w0rvn14724963@business.example.com"; // Your Business PayPal's account email address
 			this.paypalURL = "https://www.sandbox.paypal.com/cgi-bin/webscr"; // The URL of the PayPal's form
 			
 			// Object containing patterns for form validation
@@ -196,7 +196,7 @@
 
 				$( document ).on( "click", ".pdelete a", function( e ) {
 					e.preventDefault();
-					var productName = $( this ).data( "product" );
+					var productName = $( this ).data( "product-name" );
 					var newItems = [];
 					for( var i = 0; i < items.length; ++i ) {
 						var item = items[i];
@@ -365,8 +365,8 @@
 			self.$formAddToCart.each(function() {
 				var $form = $( this );
 				var $product = $form.parent();
-				var price = self._convertString( $product.data( "price" ) );
-				var name =  $product.data( "name" );
+				var price = self._convertString( $product.data( "product-price" ) );
+				var name =  $product.data( "product-name" );
 				
 				$form.on( "submit", function() {
 					var qty = self._convertString( $form.find( ".qty" ).val() );
@@ -388,6 +388,7 @@
 			});
 		},
 		
+
 		// Handles the checkout form by adding a validation routine and saving user's info into the session storage
 		
 		handleCheckoutOrderForm: function() {
