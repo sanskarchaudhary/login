@@ -5,7 +5,6 @@
 <meta charset="utf-8" />
 <link rel="stylesheet" href="style.css" media="screen" type="text/css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script type="text/javascript" src="jquery.store.js"></script>
 </head>
 
 <body>
@@ -161,4 +160,35 @@
 
 
 </body>
+<script>
+   var product = JSON.parse(localStorage.getItem('product'));
+
+// Create a new table row
+var tr = document.createElement('tr');
+
+// Create the table data cells
+var tdName = document.createElement('td');
+tdName.textContent = product.productName;
+var tdQty = document.createElement('td');
+tdQty.textContent = product.quantity;
+var tdPrice = document.createElement('td');
+tdPrice.textContent = product.productPrice;
+var tdTotal = document.createElement('td');
+tdTotal.textContent = product.qty * product.price;
+
+// Append the table data cells to the table row
+tr.appendChild(tdName);
+tr.appendChild(tdQty);
+tr.appendChild(tdPrice);
+
+const stotal = document.querySelector('#stotal');
+const qty = parseInt(tdQty.textContent, 10);
+const price = parseFloat(tdPrice.textContent);
+stotal.textContent = qty * price;
+
+// Append the table row to the table body
+document.querySelector('.shopping-cart tbody').appendChild(tr);
+        
+    
+</script>
 </html>	

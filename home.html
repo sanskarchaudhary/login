@@ -1,4 +1,4 @@
-{% comment %} <!doctype html>
+ <!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -74,6 +74,17 @@ body {
   border-bottom: 3px solid #111111;
   border-radius: 3px;
 }
+#navMid div h4 a {
+  text-decoration: none;
+  color: #333;
+}
+
+#navMid div h4 a:hover {
+  color: #333;
+}
+
+
+
 
 /* Navbar End Section */
 #navEnd {
@@ -277,7 +288,7 @@ h4 {
     <img id="imgMain" src="./img/6_folwer_cut.png" />
   </div>
 </div>
- {% comment %} <script>
+ <script>
 function myFunction() {
   var dots = document.getElementById("dots");
   var moreText = document.getElementById("more");
@@ -292,58 +303,7 @@ function myFunction() {
     moreText.style.display = "inline";
   }
 }
-</script> {% endcomment %}
+</script> 
 </body>
 </head>
 </html> 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="home.css">
-</head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="logo.png" alt="Logo">
-            </div>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-            <button class="cta">Sign Up</button>
-        </nav>
-    </header>
-    <section class="hero">
-        <h1>Welcome to our website!</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, magna a ullamcorper laoreet, lectus eros porttitor nunc, et aliquam nunc nibh et nisl. Sed auctor, magna a ullamcorper laoreet, lectus eros porttitor nunc, et aliquam nunc nibh et nisl.</p>
-        <button class="cta">Learn More</button>
-    </section>
-    <section class="services">
-        <h2>Our Services</h2>
-        <div class="service">
-            <img src="service1.png" alt="Service 1">
-            <h3>Service 1</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, magna a ullamcorper laoreet, lectus eros porttitor nunc, et aliquam nunc nibh et nisl.</p>
-        </div>
-        <div class="service">
-            <img src="service2.png" alt="Service 2">
-            <h3>Service 2</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, magna a ullamcorper laoreet, lectus eros porttitor nunc, et aliquam nunc nibh et nisl.</p>
-        </div>
-        <div class="service">
-            <img src="service3.png" alt="Service 3">
-            <h3>Service 3</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, magna a ullamcorper laoreet, lectus eros porttitor nunc, et aliquam nunc nibh et nisl.</p>
-        </div>
-    </section>
-    <footer>
-        <p>&copy; 2023 Company Name. All rights reserved.</p>
-    </footer>
-</body>
-</html>
