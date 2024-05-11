@@ -1,73 +1,228 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Your Order</title>
-<meta charset="utf-8" />
-<link rel="stylesheet" href="style.css" media="screen" type="text/css" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script type="text/javascript" src="jquery.store.js"></script>
-</head>
-
-<body id="checkout-page">
-
-<div id="site">
-	<header id="masthead">
-		<h1></h1>
-	</header>
-	<div id="content">
-		<h1>Your Order</h1>
-			<table id="checkout-cart" class="shopping-cart">
-			  <thead>
-				<tr>
-					<th scope="col">Item</th>
-					<th scope="col">Qty</th>
-					<th scope="col">Price</th>
-				</tr>
-			  </thead>
-			  <tbody>
-			  
-			  </tbody>
-			</table>
-		 <div id="pricing">
-			
-			<p id="shipping">
-				<strong>Shipping</strong>: <span id="sshipping"></span>
-			</p>
-			
-			<p id="sub-total">
-				<strong>Total</strong>: <span id="stotal"></span>
-			</p>
-		 </div>
-		 
-		 <div id="user-details">
-		 	<h2>Your Data</h2>
-		 	<div id="user-details-content"></div>
-		 </div>
-		 
-		 
-		 
-		 
-<form id="paypal-form" action="" method="post">
-	<input type="hidden" name="cmd" value="_cart" />
-	<input type="hidden" name="upload" value="1" />
-	<input type="hidden" name="business" value="" />
-        
-	<input type="hidden" name="currency_code" value="" />
-	<input type="submit" id="paypal-btn" class="btn" value="Pay with PayPal" />
-</form>
-		 
-		 
-	</div>
-	
-	
-
-</div>
-
-<footer id="site-info">
-		Copyright &copy; 
-	</footer>
-
-</body>
-</html>	
-
+  <head>
+    <title>Your Order</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" media="screen" type="text/css" />
+    <script
+      type="text/javascript"
+      src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"
+    ></script>
    
+  </head>
+
+  <body id="checkout-page">
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      #site {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      #masthead {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      #masthead h1 {
+        font-size: 48px;
+        margin: 0;
+        color: #333;
+      }
+
+      .shopping-cart {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .shopping-cart th,
+      .shopping-cart td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .shopping-cart th {
+        background-color: #ddd;
+      }
+
+      #pricing {
+        margin-top: 40px;
+      }
+
+      #pricing strong {
+        display: block;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      #user-details {
+        margin-top: 40px;
+      }
+
+      #user-details-content {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 20px;
+      }
+
+      #paypal-form {
+        margin-top: 40px;
+      }
+
+      #paypal-btn {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        background-color: #00a0c6;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #paypal-btn:hover {
+        background-color: #0085b3;
+      }
+    </style>
+    <div id="site">
+      <header id="masthead">
+        <h1></h1>
+      </header>
+      <div id="content">
+        <h1>Your Order</h1>
+        <table id="checkout-cart" class="shopping-cart">
+          <thead>
+            <tr>
+              <th scope="col">Item</th>
+              <th scope="col">Qty</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div id="pricing">
+          <p id="shipping">
+            <strong>Shipping</strong>: <span id="sshipping"></span>
+          </p>
+
+          <p id="sub-total">
+            <strong>Total</strong>: <span id="stotal"></span>
+          </p>
+        </div>
+
+        <div id="user-details">
+          <h2>Your Data</h2>
+          <div id="user-details-content"></div>
+        </div>
+
+        <form id="paypal-form" action="" method="post">
+          <input type="hidden" name="cmd" value="_cart" />
+          <input type="hidden" name="upload" value="1" />
+          <input type="hidden" name="business" value="" />
+
+          <input type="hidden" name="currency_code" value="" />
+          <input
+            type="submit"
+            id="paypal-btn"
+            class="btn"
+            value="Pay with PayPal"
+          />
+        </form>
+      </div>
+    </div>
+  </body>
+  <script>
+
+// Retrieve the data from localStorage
+var data = JSON.parse(localStorage.getItem('formData'));
+
+// Select the 'user-details-content' section
+var userDetailsContent = document.querySelector('#user-details-content');
+
+// Create elements for each data item and append them to the 'user-details-content' section
+for (var item in data) {
+	var element = document.createElement('p');
+	element.textContent = item + ': ' + data[item];
+	userDetailsContent.appendChild(element);
+}
+
+
+
+
+
+    var product = JSON.parse(localStorage.getItem("product"));
+    let totalSum = 0;
+    // Create a new table row
+    console.log(product);
+    product.forEach((product) => {
+      var tr = document.createElement("tr");
+
+      // Create the table data cellsyy
+      var tdName = document.createElement("td");
+      tdName.textContent = product.productName;
+      var tdQty = document.createElement("td");
+      tdQty.textContent = product.quantity;
+      var tdPrice = document.createElement("td");
+      tdPrice.textContent = product.productPrice;
+      var tdTotal = document.createElement("td");
+      tdTotal.textContent = product.qty * product.price;
+
+      
+
+      // Append the table data cells to the table row
+      tr.appendChild(tdName);
+      tr.appendChild(tdQty);
+      tr.appendChild(tdPrice);
+      document.querySelector(".shopping-cart tbody").appendChild(tr);
+      const qty = parseInt(tdQty.textContent, 10);
+      const price = parseFloat(tdPrice.textContent);
+      totalSum += qty * price;
+    });
+
+    const stotal = document.querySelector("#stotal");
+
+    stotal.textContent = totalSum;
+
+
+
+
+
+
+
+	// Get the billing data from local storage
+var billingData = JSON.parse(localStorage.getItem("billingData"));
+
+// Get the user-details-content element
+var userDetailsContent = document.getElementById("user-details-content");
+
+// Create a new div element to hold the billing data
+var billingDiv = document.createElement("div");
+
+// Add the billing data to the div element
+billingDiv.innerHTML = `
+  <p>Name: ${billingData.name}</p>
+  <p>Email: ${billingData.email}</p>
+  <p>City: ${billingData.city}</p>
+  <p>Address: ${billingData.address}</p>
+  <p>ZIP Code: ${billingData.zip}</p>
+  <p>Country: ${billingData.country}</p>
+`;
+
+// Add the div element to the user-details-content element
+userDetailsContent.appendChild(billingDiv);
+  </script>
+</html>

@@ -1,194 +1,226 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Your Shopping Cart</title>
-<meta charset="utf-8" />
-<link rel="stylesheet" href="style.css" media="screen" type="text/css" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-</head>
+  <head>
+    <title>Your Shopping Cart</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" media="screen" type="text/css" />
+    <script
+      type="text/javascript"
+      src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"
+    ></script>
+  </head>
 
-<body>
-<style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-        }
+  <body>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+      }
 
-        #site {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
+      #site {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      }
 
-        header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+      header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
 
-        header h1 {
-            font-size: 28px;
-            color: #333;
-        }
+      header h1 {
+        font-size: 28px;
+        color: #333;
+      }
 
-        .shopping-cart {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
+      .shopping-cart {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
 
-        .shopping-cart th, .shopping-cart td {
-            padding: 10px;
-            text-align: left;
-        }
+      .shopping-cart th,
+      .shopping-cart td {
+        padding: 10px;
+        text-align: left;
+      }
 
-        .shopping-cart th {
-            background-color: #f0f0f0;
-            color: #333;
-        }
+      .shopping-cart th {
+        background-color: #f0f0f0;
+        color: #333;
+      }
 
-        .shopping-cart td {
-            border-bottom: 1px solid #eee;
-        }
+      .shopping-cart td {
+        border-bottom: 1px solid #eee;
+      }
 
-        .shopping-cart .quantity {
-            width: 50px;
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            text-align: center;
-        }
+      .shopping-cart .quantity {
+        width: 50px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+      }
 
-        #sub-total {
-            margin-top: 20px;
-            font-size: 18px;
-        }
+      #sub-total {
+        margin-top: 20px;
+        font-size: 18px;
+      }
 
-        #sub-total strong {
-            font-weight: bold;
-        }
+      #sub-total strong {
+        font-weight: bold;
+      }
 
-        #shopping-cart-actions {
-            list-style: none;
-            padding: 0;
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+      #shopping-cart-actions {
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-        #shopping-cart-actions li {
-            margin-right: 10px;
-        }
+      #shopping-cart-actions li {
+        margin-right: 10px;
+      }
 
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #333;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #333;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
 
-        .btn:hover {
-            background-color: #555;
-        }
+      .btn:hover {
+        background-color: #555;
+      }
 
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            color: #888;
-        }
+      footer {
+        text-align: center;
+        margin-top: 20px;
+        color: #888;
+      }
 
-        footer a {
-            color: #888;
-            text-decoration: none;
-        }
+      footer a {
+        color: #888;
+        text-decoration: none;
+      }
 
-        footer a:hover {
-            color: #555;
-        }
+      footer a:hover {
+        color: #555;
+      }
     </style>
-<div id="site">
-	<header id="masthead">
-		<h1></h1>
-	</header>
-	<div id="content">
-		<h1>Your Shopping Cart</h1>
-		<form id="shopping-cart" action="cart.html" method="post">
-			<table class="shopping-cart">
-			  <thead>
-				<tr>
-					<th scope="col">Item</th>
-					<th scope="col">Qty</th>
-					<th scope="col" colspan="2">Price</th>
-				</tr>
-			  </thead>
-			  <tbody>
-			  
-			  </tbody>
-			</table>
-			<p id="sub-total">
-				<strong>Sub Total</strong>: <span id="stotal"></span>
-			</p>
-			<ul id="shopping-cart-actions">
-				<li>
-					<input type="submit" name="update" id="update-cart" class="btn" value="Update Cart" />
-				</li>
-				<li>
-					<input type="submit" name="delete" id="empty-cart" class="btn" value="Empty Cart" />
-				</li>
-				<li>
-					<a href="shop.html" class="btn">Continue Shopping</a>
-				</li>
-				<li>
-					<a href="checkout.html" class="btn">Go To Checkout</a>
-				</li>
-			</ul>
-		</form>
-	</div>
-	
-	
+    <div id="site">
+      <header id="masthead">
+        <h1></h1>
+      </header>
+      <div id="content">
+        <h1>Your Shopping Cart</h1>
+        <form id="shopping-cart" action="cart.html" method="post">
+          <table class="shopping-cart">
+            <thead>
+              <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <p id="sub-total">
+            <strong>Sub Total</strong>: <span id="stotal"></span>
+          </p>
+          <ul id="shopping-cart-actions">
+            <li>
+              <input
+                type="submit"
+                name="update"
+                id="update-cart"
+                class="btn"
+                value="Update Cart"
+              />
+            </li>
+            <li>
+              <input
+                type="submit"
+                name="delete"
+                id="empty-cart"
+                class="btn"
+                value="Empty Cart"
+              />
+            </li>
+            <li>
+              <a href="shop.html" class="btn">Continue Shopping</a>
+            </li>
+            <li>
+              <a href="checkout.html" class="btn">Go To Checkout</a>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script>
+      var product = JSON.parse(localStorage.getItem("product"));
+        let totalSum =0;
+      // Create a new table row
+      console.log(product)
+      product.forEach((product)=>{
 
-</div>
+   
+      var tr = document.createElement("tr");
 
+      // Create the table data cellsyy
+      var tdName = document.createElement("td");
+      tdName.textContent = product.productName;
+      var tdQty = document.createElement("td");
+      tdQty.textContent = product.quantity;
+      var tdPrice = document.createElement("td");
+      tdPrice.textContent = product.productPrice;
+      var tdTotal = document.createElement("td");
+      tdTotal.textContent = product.qty * product.price;
 
+      // Append the table data cells to the table row
+      tr.appendChild(tdName);
+      tr.appendChild(tdQty);
+      tr.appendChild(tdPrice);
+      document.querySelector(".shopping-cart tbody").appendChild(tr);
+         const qty = parseInt(tdQty.textContent, 10);
+         const price = parseFloat(tdPrice.textContent);
+         totalSum += qty * price;
+         })
 
-</body>
-<script>
-   var product = JSON.parse(localStorage.getItem('product'));
+      const stotal = document.querySelector("#stotal");
+      
+      stotal.textContent = totalSum;
 
-// Create a new table row
-var tr = document.createElement('tr');
+      // Append the table row to the table body
 
-// Create the table data cells
-var tdName = document.createElement('td');
-tdName.textContent = product.productName;
-var tdQty = document.createElement('td');
-tdQty.textContent = product.quantity;
-var tdPrice = document.createElement('td');
-tdPrice.textContent = product.productPrice;
-var tdTotal = document.createElement('td');
-tdTotal.textContent = product.qty * product.price;
+   
+        function emptyCart() {
+            // Remove all table rows from the shopping cart
+            localStorage.removeItem('product');
+            const cartTable = document.querySelector(".shopping-cart tbody");
+            while (cartTable.firstChild) {
+                cartTable.removeChild(cartTable.firstChild);
+            }
 
-// Append the table data cells to the table row
-tr.appendChild(tdName);
-tr.appendChild(tdQty);
-tr.appendChild(tdPrice);
+            // Reset the sub total to 0
+            const subTotal = document.querySelector("#stotal");
+            subTotal.textContent = "0";
+        }
 
-const stotal = document.querySelector('#stotal');
-const qty = parseInt(tdQty.textContent, 10);
-const price = parseFloat(tdPrice.textContent);
-stotal.textContent = qty * price;
-
-// Append the table row to the table body
-document.querySelector('.shopping-cart tbody').appendChild(tr);
-        
+        // Call the emptyCart function when the "Empty Cart" button is clicked
+        const emptyCartButton = document.querySelector("#empty-cart");
+        emptyCartButton.addEventListener("click", emptyCart);
     
-</script>
-</html>	
+  </script>
+</html>
