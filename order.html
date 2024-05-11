@@ -4,11 +4,6 @@
     <title>Your Order</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="style.css" media="screen" type="text/css" />
-    <script
-      type="text/javascript"
-      src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"
-    ></script>
-   
   </head>
 
   <body id="checkout-page">
@@ -87,15 +82,15 @@
         display: block;
         width: 100%;
         padding: 15px;
-        background-color: #00a0c6;
-        color: #fff;
+        text-align: center;
+        color: rgba(220, 220, 220, 0.9);
         border: none;
         border-radius: 5px;
         cursor: pointer;
       }
 
       #paypal-btn:hover {
-        background-color: #0085b3;
+        background-color: rgba(0, 0, 0, 0);
       }
     </style>
     <div id="site">
@@ -135,34 +130,28 @@
           <input type="hidden" name="business" value="" />
 
           <input type="hidden" name="currency_code" value="" />
-          <input
-            type="submit"
-            id="paypal-btn"
-            class="btn"
-            value="Pay with PayPal"
-          />
+          <div id="paypal-btn"></div>
+
+          <script src="https://www.paypal.com/sdk/js?client-id=AdmGE3X9dxnJJOF-hp4APkLMt2M40xCa_Sha7PVnXwid0gmnsIsPsDjaH1_L3w9G6yi-lhW0CSMWAuaJ"></script>
+
+          <script></script>
         </form>
       </div>
     </div>
   </body>
   <script>
+    // Retrieve the data from localStorage
+    var data = JSON.parse(localStorage.getItem("formData"));
 
-// Retrieve the data from localStorage
-var data = JSON.parse(localStorage.getItem('formData'));
+    // Select the 'user-details-content' section
+    var userDetailsContent = document.querySelector("#user-details-content");
 
-// Select the 'user-details-content' section
-var userDetailsContent = document.querySelector('#user-details-content');
-
-// Create elements for each data item and append them to the 'user-details-content' section
-for (var item in data) {
-	var element = document.createElement('p');
-	element.textContent = item + ': ' + data[item];
-	userDetailsContent.appendChild(element);
-}
-
-
-
-
+    // Create elements for each data item and append them to the 'user-details-content' section
+    for (var item in data) {
+      var element = document.createElement("p");
+      element.textContent = item + ": " + data[item];
+      userDetailsContent.appendChild(element);
+    }
 
     var product = JSON.parse(localStorage.getItem("product"));
     let totalSum = 0;
@@ -181,8 +170,6 @@ for (var item in data) {
       var tdTotal = document.createElement("td");
       tdTotal.textContent = product.qty * product.price;
 
-      
-
       // Append the table data cells to the table row
       tr.appendChild(tdName);
       tr.appendChild(tdQty);
@@ -196,33 +183,71 @@ for (var item in data) {
     const stotal = document.querySelector("#stotal");
 
     stotal.textContent = totalSum;
+    paypal
+      .Buttons({
+        style: {
+          shape: "pill",
+          height: 55,
+          color: "white",
+          layout: "vertical",
+          tagline: false,
+        },
+        createOrder: function (data, actions) {
+          return actions.order.create({
+            purchase_units: [
+              {
+                amount: {
+                  value: parseInt(stotal.textContent),
+                },
+              },
+            ],
+          });
+        },
+        onApprove: function (data, actions) {
+          return actions.order.capture().then(function (details) {
+            alert("Transaction completed by " + details.payer.name.given_name);
+          });
+        },
+      })
+      .render("#paypal-btn");
 
+    // Get the billing data from local storage
+    var billingData = JSON.parse(localStorage.getItem("buyerInfo"));
+  console.log(billingData)
+    // Get the user-details-content element
+    var userDetailsContent = document.getElementById("user-details-content");
 
+    // Create a new div element to hold the billing data
+    var billingDiv = document.createElement("div");
 
+    // Add the billing data to the div element
+    billingDiv.innerHTML = `
+      <p>Name: ${billingData.name}</p>
+      <p>Email: ${billingData.email}</p>
+      <p>City: ${billingData.city}</p>
+      <p>Address: ${billingData.address}</p>
+      <p>ZIP Code: ${billingData.zip}</p>
+      <p>Country: ${billingData.country}</p>
+    `;
 
+    // Add the div element to the user-details-content element
+    userDetailsContent.appendChild(billingDiv);
 
+    document.addEventListener("DOMContentLoaded", function () {
+      var form = document.querySelector("#checkout-order-form");
+      var amountField = form.querySelector("input[name='amount']");
 
+      // Calculate the total amount based on the form data
+      var totalAmount = 0; // Calculate the total amount here
+      amountField.value = totalAmount.toFixed(2);
 
-	// Get the billing data from local storage
-var billingData = JSON.parse(localStorage.getItem("billingData"));
-
-// Get the user-details-content element
-var userDetailsContent = document.getElementById("user-details-content");
-
-// Create a new div element to hold the billing data
-var billingDiv = document.createElement("div");
-
-// Add the billing data to the div element
-billingDiv.innerHTML = `
-  <p>Name: ${billingData.name}</p>
-  <p>Email: ${billingData.email}</p>
-  <p>City: ${billingData.city}</p>
-  <p>Address: ${billingData.address}</p>
-  <p>ZIP Code: ${billingData.zip}</p>
-  <p>Country: ${billingData.country}</p>
-`;
-
-// Add the div element to the user-details-content element
-userDetailsContent.appendChild(billingDiv);
+      // Submit the form to PayPal when the button is clicked
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        form.action = "https://www.paypal.com/cgi-bin/webscr";
+        form.method = "post";
+        form.submit();
+      });
+    });
   </script>
 </html>

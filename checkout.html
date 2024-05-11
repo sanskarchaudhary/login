@@ -151,7 +151,8 @@
               <th scope="col">Price</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>
+          </tbody>
         </table>
         <div id="pricing">
           <p id="shipping">
@@ -311,57 +312,16 @@
       </div>
     </div>
   </body>
+
   <script>
+  const btn = document.querySelector('#submit-order');
+   var product = JSON.parse(localStorage.getItem("product"));
+        let totalSum =0;
+      // Create a new table row
+      console.log(product)
+      product.forEach((product)=>{
 
-// Select the checkbox
-var checkbox = document.querySelector('#same-as-billing');
-
-// Define the fields to copy
-var fields = ['name', 'email', 'city', 'address', 'zip', 'country'];
-
-// Listen for the change event on the checkbox
-checkbox.addEventListener('change', function() {
-	if (this.checked) {
-		// If the checkbox is checked, copy the values from the billing address fields to the shipping address fields
-		fields.forEach(function(field) {
-			var billingField = document.querySelector('#' + field);
-			var shippingField = document.querySelector('#s' + field);
-			if (billingField && shippingField) {
-				shippingField.value = billingField.value;
-			}
-		});
-	}
-});
-
-
-
-
-
-
-// Select the form
-var form = document.querySelector('#checkout-order-form');
-
-// Collect the data from the form
-var data = {};
-for (var i = 0; i < form.elements.length; i++) {
-	var element = form.elements[i];
-	if (element.name) {
-		data[element.name] = element.value;
-	}
-}
-
-// Log the data for debugging
-console.log(data);
-
-// Store the data in localStorage
-localStorage.setItem('formData', JSON.stringify(data));
-	
-
-    var product = JSON.parse(localStorage.getItem("product"));
-    let totalSum = 0;
-    // Create a new table row
-    console.log(product);
-    product.forEach((product) => {
+   
       var tr = document.createElement("tr");
 
       // Create the table data cellsyy
@@ -379,13 +339,24 @@ localStorage.setItem('formData', JSON.stringify(data));
       tr.appendChild(tdQty);
       tr.appendChild(tdPrice);
       document.querySelector(".shopping-cart tbody").appendChild(tr);
-      const qty = parseInt(tdQty.textContent, 10);
-      const price = parseFloat(tdPrice.textContent);
-      totalSum += qty * price;
+         const qty = parseInt(tdQty.textContent, 10);
+         const price = parseFloat(tdPrice.textContent);
+         totalSum += qty * price;
+         })
+
+      const stotal = document.querySelector("#stotal");
+      
+      stotal.textContent = totalSum;
+  btn.addEventListener('click' , (e)=>{
+    var form = document.querySelector('#checkout-order-form');
+    var fieldset = form.querySelector('#fieldset-billing');
+    var inputs = fieldset.querySelectorAll('input, select');
+    var data = {};
+    inputs.forEach(input => {
+      data[input.name] = input.value;
     });
-
-    const stotal = document.querySelector("#stotal");
-
-    stotal.textContent = totalSum;
+    console.log(data);
+    localStorage.setItem('buyerInfo',JSON.stringify(data));
+  })
   </script>
 </html>
